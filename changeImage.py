@@ -2,8 +2,8 @@
 import os
 from PIL import Image
 
-folder_dir = r'C:\Users\<INSERT USER HERE>\Desktop\phone_pictures'
-destination_dir = r'C:\Users\<INSERT USER HERE>\Desktop\move pictures to folder\\'
+folder_dir = r'C:/Users/Marcin Malek/Desktop/phone_pictures/'
+destination_dir = r'C:/Users/Marcin Malek/Desktop/move pictures to folder/'
 
 def rename_img(folder):
     '''If OSError has been raised, this means that the file which is trying to be converted is unable to do so.'''
@@ -18,11 +18,14 @@ def rename_img(folder):
                 print("cannot convert", infile)
 
 
-
-def shape_rotate_img(folder):
-    '''Change the parameters inside of the im.resize() and im.rotate() as necessary for sizing and rotating needs.'''
+def resize_rgb(folder):
     for infile in os.listdir(folder):
         im = Image.open(infile)
         im = im.resize((600, 400))
         if im.mode != 'RGB':
             im.convert('RGB')
+
+os.chdir(folder_dir)
+rename_img(folder_dir)
+os.chdir(destination_dir)
+resize_rgb(destination_dir)
