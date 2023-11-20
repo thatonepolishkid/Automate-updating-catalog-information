@@ -16,11 +16,9 @@ def fruit_dict_to_table(fruit_data):
 
 def main(argv):
     data = load_data('file location')
-    summary = process_data(data)
-    new_summary = ''.join(summary)
-    print(summary)
-    report("/tmp/cars.pdf", "Cars Report", new_summary, fruit_dict_to_table(data))
-    message = email_generate("automation@example.com", "username@example.com", "sales summary for last month", new_summary, "/tmp/cars.pdf")
+    body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
+    report("/tmp/fruit.pdf", "Fruit Report", body, fruit_dict_to_table(data))
+    message = email_generate("automation@example.com", "username@example.com", "Upload Completed - Online Fruit Store", body, "/tmp/fruit.pdf")
     email_send(message)
 
 if __name__ == "__main__":
