@@ -8,14 +8,12 @@ import psutil
 def check_disk_full(disk, min_gb, min_percent):
     """Checks if there is enough disk space."""
     du = shutil.disk_usage(disk)
-    
+
     percent_free = 100 * du.free / du.total
-    
+
     gigabytes_free = du.free / 2**30
-    
-    if gigabytes_free < min_gb or percent_free < min_percent:
-        return True
-    return False
+
+    return gigabytes_free < min_gb or percent_free < min_percent
 
 
 def check_root_full():
@@ -28,16 +26,11 @@ def check_no_network():
     try:
         socket.gethostbyname("www.google.com")
         return False
-    except:
+    except Exception:
         return True
 
 
-def check_cpu_constrained():
-    """Returns True if the cpu is having too much usage, False otherwise."""
-    return psutil.cpu_percent(1) > 80
-
-
-def check_memory_usage():
+def check_cpu_usage():
     """Checks cpu usage over 2 seconds, and gets the average. If cpu usage under 80% returns True, else returns False"""
     usage = psutil.cpu_percent(2)
     print(usage)
