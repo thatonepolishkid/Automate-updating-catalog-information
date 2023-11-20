@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
+import os
 import sys
 from reports import generate as report
 from emails import generate as email_generate
 from emails import send as email_send
 
-
-
+def load_data(dir):
+    data = {}
+    list_of_files = list(os.listdir(dir))
+    for file in list_of_files:
+        with open(file, "r") as info:
+            lines = info.readlines()
+            if lines[0] not in data.keys():
+                data[lines[0]] = data[lines[1]]
+    return data
 
 
 def fruit_dict_to_table(fruit_data):
