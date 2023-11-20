@@ -30,7 +30,7 @@ def check_no_network():
         return True
 
 def check_virtual_memory():
-    return psutil.virtual_memory() >= 500
+    return psutil.virtual_memory() > 500
 
 def check_cpu_usage():
     """Checks cpu usage over 2 seconds, and gets the average. If cpu usage under 80% returns True, else returns False"""
