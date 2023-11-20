@@ -45,7 +45,7 @@ def main():
     checks = [
         (check_root_full, "Root partition Full"),
         (check_no_network, "No working network."),
-        (check_memory_usage, "Caution CPU usage above 80%!"),
+        (check_cpu_usage, "Caution CPU usage above 80%!"),
     ]
     everything_ok = True
     for check, msg in checks:
@@ -54,7 +54,7 @@ def main():
             everything_ok = False
     if not everything_ok:
         sys.exit(1)
-    print("Nothing wrong and no reboot scheduled.")
+    print("Nothing wrong")
 
 
 if __name__ == '__main__':
