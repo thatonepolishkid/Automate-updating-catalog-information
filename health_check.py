@@ -37,10 +37,6 @@ def check_cpu_usage():
     return usage > 80
 
 
-def send_email_notification():
-    pass
-
-
 def main():
     checks = [
         (check_root_full, "Root partition Full"),
